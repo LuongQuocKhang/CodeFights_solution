@@ -71,10 +71,38 @@ namespace CodeFights_solution
             #endregion
             #endregion
 
+            #region 4 - Exploring the Waters
             #region alternatingSums
-
+            //int[] array = { 80 };
+            //int[] result = alternatingSums(array);
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    Console.Write(result[i] + " ");
+            //}
             #endregion
 
+            #region addBorder
+            //string[] picture = { "a"};
+            //string[] result = addBorder(picture);
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    Console.WriteLine(result[i]);
+            //}
+            #endregion
+
+            #region areSimilar
+            //int[] a = { 832, 998, 148, 570, 533, 561, 894, 147, 455, 279 };
+            //int[] b = { 832, 998, 148, 570, 533, 561, 455, 147, 894, 279 };
+            //Console.WriteLine(areSimilar(a,b));
+            #endregion
+
+            #region arrayChange
+
+            #endregion
+            #endregion
+
+            int[] array = { -1000, 0, -2, 0 };
+            Console.WriteLine(arrayChange(array));
             Console.ReadLine();
         }
 
@@ -347,6 +375,101 @@ namespace CodeFights_solution
             // mỗi vòng chỉ xử lý 1 cập dấu {} nên phải chạy tới khi nào ko còn dấu {} nữa
             return reverseParentheses(result);
         }
+        #endregion
+
+        #region 4 - Exploring the Waters
+        public static int[] alternatingSums(int[] a)
+        {
+            int[] result = new int[2];
+            result[0] = 0;
+            result[1] = 0;
+            for (int i = 0; i < a.Length; i += 2)
+            {
+                result[0] += a[i];
+            }
+            for (int i = 1; i < a.Length; i+=2)
+            {
+                result[1] += a[i];
+            }
+            return result;
+        }
+        public static string[] addBorder(string[] picture)
+        {
+            string[] result = new string[picture.Length + 2];
+            string tempfirst = "";
+            string first = picture[0];
+            for (int i = 0; i < first.Length + 2; i++)
+            {
+                tempfirst += "*";
+            }
+            result[0] = tempfirst;
+            string temp = "";
+            for (int i = 0; i < picture.Length; i++)
+            {
+                temp = "*" + picture[i] + "*";
+                result[i + 1] = temp;
+            }
+            result[picture.Length + 1] = tempfirst;
+            return result;
+        }
+        public static bool areSimilar(int[] a, int[] b)
+        {
+            int dem = 0;
+            int[] temp = (int[])b.Clone();
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if ( a[i] != temp[i])
+                {
+                    for (int j = i + 1; j < temp.Length; j++)
+                    {
+                        int first = temp[i];
+                        temp[i] = temp[j];
+                        temp[j] = first;
+
+                        if (check(temp, a) == true)
+                        {
+                            return true;
+                        }
+                        temp = (int[])b.Clone();
+                    }
+                }
+                else
+                {
+                    dem++;
+                }
+            }
+            if (dem == a.Length) return true;
+            return false;
+        }
+        public static bool check(int[] a , int[] b)
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] != b[i])
+                {
+                    return false;
+                }      
+            }
+            return true;
+        }
+        public static int arrayChange(int[] inputArray)
+        {
+            int result = 0;
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                if (i + 1 < inputArray.Length)
+                {
+                    if (inputArray[i] >= inputArray[i + 1])
+                    {
+                        int temp = inputArray[i] + 1;
+                        result += temp - inputArray[i + 1];
+                        inputArray[i + 1] = inputArray[i] + 1;
+                    }
+                }
+            }
+            return result;
+        }
+
         #endregion
     }
 }
