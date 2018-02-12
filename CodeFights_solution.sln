@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFights_solution", "CodeFights_solution\CodeFights_solution.csproj", "{1583EE09-CC31-421E-8ED0-478033174164}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1583EE09-CC31-421E-8ED0-478033174164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1583EE09-CC31-421E-8ED0-478033174164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1583EE09-CC31-421E-8ED0-478033174164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1583EE09-CC31-421E-8ED0-478033174164}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46CD6845-1FF1-47F1-9F8A-CB3C16EBDF31}
+	EndGlobalSection
+EndGlobal
