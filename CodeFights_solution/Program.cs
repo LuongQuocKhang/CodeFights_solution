@@ -74,7 +74,7 @@ namespace CodeFights_solution
             #region 4 - Exploring the Waters
             #region alternatingSums
             //int[] array = { 80 };
-            //int[] result = alternatingSums(array);
+            //int[] result = AlternatingSums(array);
             //for (int i = 0; i < result.Length; i++)
             //{
             //    Console.Write(result[i] + " ");
@@ -83,7 +83,7 @@ namespace CodeFights_solution
 
             #region addBorder
             //string[] picture = { "a"};
-            //string[] result = addBorder(picture);
+            //string[] result = AddBorder(picture);
             //for (int i = 0; i < result.Length; i++)
             //{
             //    Console.WriteLine(result[i]);
@@ -93,16 +93,20 @@ namespace CodeFights_solution
             #region areSimilar
             //int[] a = { 832, 998, 148, 570, 533, 561, 894, 147, 455, 279 };
             //int[] b = { 832, 998, 148, 570, 533, 561, 455, 147, 894, 279 };
-            //Console.WriteLine(areSimilar(a,b));
+            //Console.WriteLine(AreSimilar(a,b));
             #endregion
 
             #region arrayChange
+            //int[] array = { -1000, 0, -2, 0 };
+            //Console.WriteLine(ArrayChange(array));
+            #endregion
 
+            #region palindromeRearranging
+            string result = "aaabbcc";
+            Console.WriteLine(result);
+            Console.WriteLine(PalindromeRearranging(result));
             #endregion
             #endregion
-
-            int[] array = { -1000, 0, -2, 0 };
-            Console.WriteLine(arrayChange(array));
             Console.ReadLine();
         }
 
@@ -378,7 +382,7 @@ namespace CodeFights_solution
         #endregion
 
         #region 4 - Exploring the Waters
-        public static int[] alternatingSums(int[] a)
+        public static int[] AlternatingSums(int[] a)
         {
             int[] result = new int[2];
             result[0] = 0;
@@ -393,7 +397,7 @@ namespace CodeFights_solution
             }
             return result;
         }
-        public static string[] addBorder(string[] picture)
+        public static string[] AddBorder(string[] picture)
         {
             string[] result = new string[picture.Length + 2];
             string tempfirst = "";
@@ -412,7 +416,7 @@ namespace CodeFights_solution
             result[picture.Length + 1] = tempfirst;
             return result;
         }
-        public static bool areSimilar(int[] a, int[] b)
+        public static bool AreSimilar(int[] a, int[] b)
         {
             int dem = 0;
             int[] temp = (int[])b.Clone();
@@ -452,7 +456,7 @@ namespace CodeFights_solution
             }
             return true;
         }
-        public static int arrayChange(int[] inputArray)
+        public static int ArrayChange(int[] inputArray)
         {
             int result = 0;
             for (int i = 0; i < inputArray.Length; i++)
@@ -469,7 +473,43 @@ namespace CodeFights_solution
             }
             return result;
         }
+        public static bool PalindromeRearranging(string inputString)
+        {
+            int[] a = new int[51]; // mảng để lưu số lần xuất hiện của mỗi phần tử
+            bool[] b = new bool[51]; // dùng để kiểm tra xem vị trí đó xét chưa
+            int count = 0, result = 0; // count là vị trí
+            for (int i = 0; i < inputString.Length; i++)
+            {
+                if ( b[i] == false)
+                {
+                    a[count] = 1;
+                    b[i] = true;
+                    for (int j = i + 1; j < inputString.Length; j++)
+                    {
+                        if (inputString[i] == inputString[j])
+                        {
+                            a[count]++; // tăng số lần xuất hiện
+                            b[j] = true;
+                        }
+                    }
+                    count++;
+                }
+            }
+            /*kiểm tra xem có chữ nào xuất hiện số lần lẻ hay ko , chỉ dc 1 hoặc 0 số dc xuất hiện số lần lẻ
+             * VD : a b a b a  a xuất hiện số lần lẻ => đối xứng qua a
+            */
+            for (int i = 0; i < count; i++)
+            {
+                if ( a[i] % 2 != 0)
+                {
+                    result++;
+                }
+            }
+            return result <= 1; // chỉ dc 1 chữ xuất hiện số lần lẻ vì sẽ đối xứng qua chữ đó
+        }
+        #endregion
 
+        #region 5 - Island of Knowledge
         #endregion
     }
 }
