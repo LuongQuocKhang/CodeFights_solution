@@ -74,6 +74,7 @@ namespace CodeFights_solution
             #region alternatingSums
 
             #endregion
+
             Console.ReadLine();
         }
 
