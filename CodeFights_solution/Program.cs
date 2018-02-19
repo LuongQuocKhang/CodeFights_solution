@@ -102,9 +102,50 @@ namespace CodeFights_solution
             #endregion
 
             #region palindromeRearranging
-            string result = "aaabbcc";
-            Console.WriteLine(result);
-            Console.WriteLine(PalindromeRearranging(result));
+            //string result = "aaabbcc";
+            //Console.WriteLine(result);
+            //Console.WriteLine(PalindromeRearranging(result));
+            #endregion
+            #endregion
+
+            #region 5 - island of knowlegde
+            #region IsIPv4Address
+            //string result = "1";
+            //Console.WriteLine(isIPv4Address(result));
+            #endregion
+
+            #region AvoidObstacles 
+            //int[] inputarray = { 19, 32, 11, 23 };
+            //Console.WriteLine(AvoidObstacles(inputarray));
+            #endregion
+
+            #region BoxBlur
+            //int[][] image = {new int[] {36,0,18,9 },
+            //                 new int[] {27,54,9,0},
+            //                  new int[] { 81, 63, 72, 45 } };
+            //int[][] result = BoxBlur(image);
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    for (int j = 0; j < result[i].Length; j++)
+            //    {
+            //        Console.Write(result[i][j] + " ");
+            //    }
+            //    Console.WriteLine();
+            //}
+            #endregion
+            #region Minesweeper
+            //bool[][] matrix = { new bool[] {true,false,false,true},
+            //                    new bool[] {false,false,true,false},
+            //                    new bool[] { true, true, false, true } };
+            //int[][] result = minesweeper(matrix);
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    for (int j = 0; j < result[i].Length; j++)
+            //    {
+            //        Console.Write(result[i][j] + " ");
+            //    }
+            //    Console.WriteLine();
+            //}
             #endregion
             #endregion
             Console.ReadLine();
@@ -510,6 +551,151 @@ namespace CodeFights_solution
         #endregion
 
         #region 5 - Island of Knowledge
+        public static bool AreEquallyStrong(int yourLeft, int yourRight, int friendsLeft, int friendsRight)
+        {
+            if (yourLeft + yourRight == friendsLeft + friendsRight)
+            {
+                if (yourLeft == friendsLeft || yourLeft == friendsRight)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static int ArrayMaximalAdjacentDifference(int[] inputArray)
+        {
+            int max = inputArray[0];
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                if (inputArray[i] > max)
+                {
+                    max = inputArray[i];
+                }
+            }
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                if (inputArray[i] == max)
+                {
+                    if ( i + 1 < inputArray.Length)
+                    {
+                        if (inputArray[i+1] < inputArray[i])
+                        {
+                            return inputArray[i] - inputArray[i + 1];
+                        }
+                    }
+                    else
+                    {
+                        return inputArray[i] - inputArray[i - 1];
+                    }
+                }
+            }
+            return 0;
+        }
+        public static bool IsIPv4Address(string inputString)
+        {
+            string[] temp = inputString.Split('.');
+            int dem = 0;
+            if ( temp.Length == 4)
+            {
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if ( temp[i] != "")
+                    {
+                        int result = 0;
+                        if ( Int32.TryParse(temp[i],out result) == true)
+                        if (result >= 0 && result <= 255)
+                        {
+                            dem++;
+                        }
+                    }
+                }
+            }
+            if (dem == temp.Length) return true;
+            return false;
+        }
+        public static int AvoidObstacles(int[] inputArray)
+        {
+            List<int> list = inputArray.ToList();
+            for (int i = 1; i < inputArray.Max() + 1; i++)
+            {
+                if ( list.All(element => element % i != 0) )
+                {
+                    return i;
+                }
+            }
+            return list.Max() + 1;
+        }
+        public static int[][] BoxBlur(int[][] image)
+        {
+            int[][] result = null;
+            List<List<int>> temp = new List<List<int>>();
+            for (int i = 0; i < image.Length - 2; i++) // mỗi lần chọn ra 3 số nên phải - 2 để tránh chọn 2 hoặc 1 số cuối
+            {
+                List<int> list = new List<int>();
+                for (int j = 0; j < image[i].Length - 2; j++)
+                {
+                    // xét ma trận cấp 3 từ vị trì i , j
+                    int sum = 0;
+                    for (int x = i; x < i + 3; x++)
+                    {
+                        for (int y = j; y < j + 3; y++)
+                        {
+                            sum += image[x][y];
+                        }
+                    }
+                    list.Add(Convert.ToInt32(sum / 9));
+                }
+                temp.Add(list);
+            }
+            // chuyển về mảng trong mảng kiểu int[][]
+            return result = temp.Select( list => list.ToArray()).ToArray();
+        }
+        public static int[][] minesweeper(bool[][] matrix)
+        {
+            int[][] result = null;
+            List<List<int>> Temp = new List<List<int>>();
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                List<int> list = new List<int>();
+                for (int j = 0; j < matrix[i].Length; j++)
+                {
+                    int dem = 0;
+                    for (int x = i - 1; x < i + 2; x++)
+                    {
+                        if ( x >= 0 )
+                        {
+                            for (int y = j - 1; y < j + 2; y++)
+                            {
+                                if ( y >= 0)
+                                {
+                                    if ((y < matrix[i].Length && x < matrix.Length))
+                                    {
+                                        if (x == i && y == j)
+                                        {
+                                            continue;
+                                        }
+                                        else
+                                        {
+                                            if (matrix[x][y] == true)
+                                            {
+                                                dem++;
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    list.Add(dem);
+                }
+                Temp.Add(list);
+            }
+            return result = Temp.Select(list => list.ToArray()).ToArray();
+        }
         #endregion
     }
 }
