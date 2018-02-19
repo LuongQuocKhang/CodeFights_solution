@@ -133,11 +133,12 @@ namespace CodeFights_solution
             //    Console.WriteLine();
             //}
             #endregion
+
             #region Minesweeper
             //bool[][] matrix = { new bool[] {true,false,false,true},
             //                    new bool[] {false,false,true,false},
             //                    new bool[] { true, true, false, true } };
-            //int[][] result = minesweeper(matrix);
+            //int[][] result = Minesweeper(matrix);
             //for (int i = 0; i < result.Length; i++)
             //{
             //    for (int j = 0; j < result[i].Length; j++)
@@ -147,6 +148,38 @@ namespace CodeFights_solution
             //    Console.WriteLine();
             //}
             #endregion
+            #endregion
+            #region 6 - Rains of Reason
+            #region ArrayReplace
+            //int[] inputarray = { 1, 2, 3, 4, 5 };
+            //int[] result = ArrayReplace(inputarray, 3, 0);
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    Console.Write(result[i] + " ");
+            //}
+            #endregion
+
+            #region EvenDigitsOnly
+            //int n = 1;
+            //Console.WriteLine(EvenDigitsOnly(n));
+            #endregion
+
+            #region VariableName
+            //string result = "2var_1__Int";
+            //Console.WriteLine(VariableName(result));
+            #endregion
+
+            #region AlphabeticShift
+            //string inputstring = "codefights";
+            //Console.WriteLine(alphabeticShift(inputstring));
+            #endregion
+
+            #region ChessBoardCellColor
+            //string cell1 = "B3";
+            //string cell2 = "H8";
+            //Console.WriteLine(ChessBoardCellColor(cell1,cell2));
+            #endregion
+
             #endregion
             Console.ReadLine();
         }
@@ -650,7 +683,7 @@ namespace CodeFights_solution
             // chuyển về mảng trong mảng kiểu int[][]
             return result = temp.Select( list => list.ToArray()).ToArray();
         }
-        public static int[][] minesweeper(bool[][] matrix)
+        public static int[][] Minesweeper(bool[][] matrix)
         {
             int[][] result = null;
             List<List<int>> Temp = new List<List<int>>();
@@ -695,6 +728,66 @@ namespace CodeFights_solution
                 Temp.Add(list);
             }
             return result = Temp.Select(list => list.ToArray()).ToArray();
+        }
+        #endregion
+
+        #region 6 - Rains of Reason
+        public static int[] ArrayReplace(int[] inputArray, int elemToReplace, int substitutionElem)
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                if (inputArray[i] == elemToReplace)
+                {
+                    list.Add(substitutionElem);
+                }
+                else
+                {
+                    list.Add(inputArray[i]);
+                }
+            }
+            return list.ToArray();
+        }
+        public static bool EvenDigitsOnly(int n)
+        {
+            List<int> list = new List<int>();
+            while(n != 0)
+            {
+                if ( n % 10 != 0)
+                {
+                    list.Add(n % 10);
+                }
+                n = n / 10;
+            }
+            return list.All(element => element % 2 == 0);
+        }
+        public static bool VariableName(string name)
+        {
+            if (Convert.ToInt32(name[0]) >= 48 && Convert.ToInt32(name[0]) <= 57 ) return false;
+            if (name.All(c => Convert.ToInt32(c) >= 65 && Convert.ToInt32(c) <= 90 // chữ in
+                           || Convert.ToInt32(c) >= 97 && Convert.ToInt32(c) <= 122 // chữ thường
+                           || Convert.ToInt32(c)>= 48 && Convert.ToInt32(c) <= 57 // số
+                           || c == '_' )) return true;
+            return false;
+        }
+        public static string alphabeticShift(string inputString)
+        {
+            string result = "";
+            for (int i = 0; i < inputString.Length; i++)
+            {
+                int temp = Convert.ToInt32(inputString[i]) + 1;
+                if ( temp > 122)
+                {
+                    temp = 96 + (temp - 122);
+                }
+                result += Convert.ToChar(temp).ToString();
+            }
+            return result;
+        }
+        public static bool ChessBoardCellColor(string cell1, string cell2)
+        {
+            return (cell1.All(c => Convert.ToInt32(c) % 2 == 0) || cell1.All(c => Convert.ToInt32(c) % 2 != 0))
+                == (cell2.All(c => Convert.ToInt32(c) % 2 == 0) || cell2.All(c => Convert.ToInt32(c) % 2 != 0));
         }
         #endregion
     }
