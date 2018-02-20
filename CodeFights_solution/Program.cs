@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -149,6 +150,7 @@ namespace CodeFights_solution
             //}
             #endregion
             #endregion
+
             #region 6 - Rains of Reason
             #region ArrayReplace
             //int[] inputarray = { 1, 2, 3, 4, 5 };
@@ -179,7 +181,25 @@ namespace CodeFights_solution
             //string cell2 = "H8";
             //Console.WriteLine(ChessBoardCellColor(cell1,cell2));
             #endregion
+            #endregion
 
+            #region 7 - Through the Fog
+            #region CircleOfNumbers
+            //Console.WriteLine(CircleOfNumbers(4,2));
+            #endregion
+
+            #region DepositProfit
+            //Console.WriteLine(DepositProfit(100,20,170));
+            #endregion
+
+            #region AbsoluteValuesSumMinimization
+            //int[] a = { 2, 4, 7 };
+            //Console.WriteLine(AbsoluteValuesSumMinimization(a));
+            #endregion
+
+            #region StringsRearrangement
+            Console.WriteLine(StringsRearrangement(new string[] { "abc","abx","axx","abc" }));
+            #endregion
             #endregion
             Console.ReadLine();
         }
@@ -788,6 +808,93 @@ namespace CodeFights_solution
         {
             return (cell1.All(c => Convert.ToInt32(c) % 2 == 0) || cell1.All(c => Convert.ToInt32(c) % 2 != 0))
                 == (cell2.All(c => Convert.ToInt32(c) % 2 == 0) || cell2.All(c => Convert.ToInt32(c) % 2 != 0));
+        }
+        #endregion
+
+        #region 7 - Through the Fog
+        public static int CircleOfNumbers(int n, int firstNumber)
+        {
+             return firstNumber + n / 2 > n - 1 ? firstNumber + n / 2 - n : firstNumber + n / 2;
+        }
+        public static int DepositProfit(double deposit, int rate, int threshold)
+        {
+            // đổi tham int deposit => double deposit
+            int year = 0;
+            while ( deposit < threshold)
+            {
+                // vế sau trả về double , nếu lưu qua int thì sẽ bị mất giá trị sau dấu ,
+                deposit += rate * deposit / 100;
+                year++;
+            }
+            return year;
+        }
+        public static int AbsoluteValuesSumMinimization(int[] a)
+        {
+            int result = 0;
+            Dictionary<int, int> dictionary = new Dictionary<int, int>();
+            for (int i = 0; i < a.Length; i++)
+            {
+                int temp = 0;
+                for (int j = 0; j < a.Length; j++)
+                {
+                    temp += Math.Abs(a[j] - a[i]);
+                }
+                if ( dictionary.ContainsKey(temp) == false)
+                {
+                    dictionary.Add(temp, a[i]);
+                }
+            }
+            return result = dictionary[dictionary.Keys.ToList().Min()];
+        }
+        public static bool StringsRearrangement(string[] inputArray)
+        {
+            for (int i = 0; i < inputArray.Length; i++)
+            { //for each string
+                string[] bank = inputArray; //copy the string array to form a 'word bank'
+                string[] good = new string[bank.Length]; //create an empty array to build a solution
+                good[0] = bank[i]; //begin the solution with each word
+                bank = pop(bank, i); //remove the beginning word from the word bank
+                if (continueSwap(good, bank, 0)) //if a solution is found using this beginning word, return true
+                    return true;
+            }
+            return false; //all words have failed to begin a valid sequence
+        }
+        public static bool continueSwap(string[] good, string[] bank, int step)
+        {
+            for (int i = 0; i < bank.Length; i++)
+            { //for each remaining word in bank
+                if (canSwap(good[step], bank[i]))
+                { //can the last known good word swap a letter to form this word in bank?
+                    if (bank.Length == 1) //is this the last word in bank?
+                        return true; //a solution is found!
+                                     //if not, there are more word(s) to test
+                    string[] better = good; //copy the good sequence as not to alter it for later iterations
+                    better[step + 1] = bank[i]; //add the next good word to the sequence
+                    string[] removed = pop(bank, i); //remove this word from word bank
+                    if (continueSwap(better, removed, step + 1)) //keep going until no words in bank match, or the final word in bank matches
+                        return true;
+                }//end swap check
+            }//end of each word in bank
+            return false; //no words remaining in word bank can continue this sequence
+        }
+        public static bool canSwap(string a, string b)
+        {
+            char[] ac = a.ToCharArray();
+            char[] bc = b.ToCharArray();
+            int different = 0; //count the descrepensies between characters
+            for (int i = 0; i < ac.Length; i++)
+                if (ac[i] != bc[i])
+                    different++;
+            return (different == 1);    //words can swap a character to match if there is exactly 1 different letter
+        }
+        public static string[] pop(string[] inputArray, int pop)
+        { //used to return an array missing element at index 'pop'
+            string[] popped = new string[inputArray.Length - 1];
+            for (int i = 0; i < pop; i++)
+                popped[i] = inputArray[i];
+            for (int i = pop; i < popped.Length; i++)
+                popped[i] = inputArray[i + 1];
+            return popped;
         }
         #endregion
     }
