@@ -198,9 +198,33 @@ namespace CodeFights_solution
             #endregion
 
             #region StringsRearrangement
-            Console.WriteLine(StringsRearrangement(new string[] { "abc","abx","axx","abc" }));
+            //Console.WriteLine(StringsRearrangement(new string[] { "abc","abx","axx","abc" }));
             #endregion
             #endregion
+
+            #region 8 - Diving Deeper
+            #region ExtractEachKth
+            //int[] inputarray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //int[] result = ExtractEachKth(inputarray, 3);
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    Console.Write(result[i] + " ");
+            //}
+            #endregion
+
+            #region FirstDigit
+            //Console.WriteLine(FirstDigit("var_1__Int"));
+            #endregion
+
+            #region DifferentSymbolsNaive
+            //Console.WriteLine(DifferentSymbolsNaive("bcaba"));
+            #endregion
+
+            #region ArrayMaxConsecutiveSum
+            //Console.WriteLine(ArrayMaxConsecutiveSum(new int[] { 1, 3, 2, 4 },3));
+            #endregion
+            #endregion
+
             Console.ReadLine();
         }
 
@@ -895,6 +919,62 @@ namespace CodeFights_solution
             for (int i = pop; i < popped.Length; i++)
                 popped[i] = inputArray[i + 1];
             return popped;
+        }
+        #endregion
+
+        #region 8 - Diving Deeper
+        public static int[] ExtractEachKth(int[] inputArray, int k)
+        {  
+            List<int> list = inputArray.ToList();
+            for (int i = 1; i <= 10; i++)
+            {
+                if ( i * k - 1 < inputArray.Length)
+                {
+                    list.Remove(inputArray[i * k - 1]);
+                }
+            }
+            return list.ToArray();
+        }
+        public static char FirstDigit(string inputString)
+        {
+            int temp;
+            for (int i = 0; i < inputString.Length; i++)
+            {
+                if ( int.TryParse(inputString[i].ToString(),out temp) == true)
+                {
+                    return inputString[i];
+                }
+            }
+            return ' ';
+        }
+        public static int DifferentSymbolsNaive(string s)
+        {
+            List<char> list = new List<char>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if ( list.Contains(s[i]) == false)
+                {
+                    list.Add(s[i]);
+                }
+            }
+            return list.Count;
+        }
+        public static int ArrayMaxConsecutiveSum(int[] inputArray, int k)
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                int sum = 0;
+                if ( i + k <= inputArray.Length)
+                {
+                    for (int j = i; j < i + k; j++)
+                    {
+                        sum += inputArray[j];
+                    }
+                    list.Add(sum);
+                }
+            }
+            return list.Max();
         }
         #endregion
     }
