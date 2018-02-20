@@ -225,6 +225,29 @@ namespace CodeFights_solution
             #endregion
             #endregion
 
+            #region 9 - Dark Wilderness
+            #region GrowingPlant
+            //Console.WriteLine(GrowingPlant(10,9,4));
+            #endregion
+
+            #region KnapsackLight
+            //Console.WriteLine(KnapsackLight(5,3,7,4,6));
+            #endregion
+
+            #region LongestDigitsPrefix
+            //Console.WriteLine(LongestDigitsPrefix("the output is 42"));
+            #endregion
+
+            #region DigitDegree
+            //Console.WriteLine(DigitDegree(100));
+            #endregion
+
+            #region BishopAndPawn
+            //Console.WriteLine(BishopAndPawn("a1", "c3"));
+            #endregion
+            #endregion
+
+
             Console.ReadLine();
         }
 
@@ -977,5 +1000,131 @@ namespace CodeFights_solution
             return list.Max();
         }
         #endregion
+
+        #region 9 - Dark Wilderness
+        public static int GrowingPlant(int upSpeed, int downSpeed, int desiredHeight)
+        {
+            int day = 1;
+            int temp = upSpeed;
+            while ( temp < desiredHeight)
+            {
+                temp += upSpeed - downSpeed;
+                day++;
+            }
+            return day;
+        }
+        public static int KnapsackLight(int value1, int weight1, int value2, int weight2, int maxW)
+        {
+            int value = 0;
+            if ( value1 > value2)
+            {
+                if (maxW - weight1 >= 0 )
+                {
+                    maxW -= weight1;
+                    value += value1;
+                }
+                if (maxW - weight2 >= 0)
+                {
+                    value += value2;
+                }
+            }
+            else if (value2 > value1)
+            {
+                if (maxW - weight2 >= 0)
+                {
+                    maxW -= weight2;
+                    value += value2;
+                }
+                if (maxW - weight1 >= 0)
+                {
+                    value += value1;
+                }
+            }
+            return value;
+        }
+        public static string LongestDigitsPrefix(string inputString)
+        {
+            string result = "";
+            string temp = inputString.ToLower();
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if ( Convert.ToInt32(temp[i]) >= 48 && Convert.ToInt32(temp[i]) <= 57)
+                {
+                    result += inputString[i];
+                }
+                else
+                {        
+                    break;
+                }
+            }
+            return result;
+        }
+        public static int DigitDegree(int n)
+        {
+            int dem = 0;
+            int temp = n;
+            while (temp != 0)
+            {
+                if (temp.ToString().Length == 1)
+                {
+                    return dem;
+                }
+                else
+                {
+                    int a = 0;
+                    while (temp != 0)
+                    {
+                        a += temp % 10;
+                        temp /= 10;
+                    }
+                    temp = a;
+                    dem++;
+                }
+            }
+            return dem++;
+        }
+        public static bool BishopAndPawn(string bishop, string pawn)
+        {
+            bishop = bishop.ToUpper();
+            pawn = pawn.ToUpper();
+            if (bishop[0].Equals(pawn) == true || bishop[1].Equals(pawn[1]) == true) return false;
+            if ( Convert.ToInt32(pawn[0]) > Convert.ToInt32(bishop[0]))
+            {
+                if ((int)Char.GetNumericValue(pawn[1]) > (int)Char.GetNumericValue(bishop[1]))
+                {
+                    for (int i = Convert.ToInt32(bishop[0]) , j = (int)Char.GetNumericValue(bishop[1]); i <= 72 && j <= 8 ; i++,j++)
+                    {
+                        if (i == Convert.ToInt32(pawn[0]) && j == (int)Char.GetNumericValue(pawn[1])) return true;
+                    }
+                }
+                else if ((int)Char.GetNumericValue(pawn[1])< (int)Char.GetNumericValue(bishop[1]))
+                {
+                    for (int i = Convert.ToInt32(bishop[0]), j = (int)Char.GetNumericValue(bishop[1]); i <= 72 && j >= 1; i++, j--)
+                    {
+                        if (i == Convert.ToInt32(pawn[0]) && j == (int)Char.GetNumericValue(pawn[1])) return true;
+                    }
+                }
+            }
+            else if (Convert.ToInt32(pawn[0]) < Convert.ToInt32(bishop[0]))
+            {
+                if ((int)Char.GetNumericValue(pawn[1])> (int)Char.GetNumericValue(bishop[1]))
+                {
+                    for (int i = Convert.ToInt32(bishop[0]), j = (int)Char.GetNumericValue(bishop[1]); i >= 65 && j <= 8; i--, j++)
+                    {
+                        if (i == Convert.ToInt32(pawn[0]) && j == (int)Char.GetNumericValue(pawn[1])) return true;
+                    }
+                }
+                else if ((int)Char.GetNumericValue(pawn[1])< (int)Char.GetNumericValue(bishop[1]))
+                {
+                    for (int i = Convert.ToInt32(bishop[0]), j = (int)Char.GetNumericValue(bishop[1]); i >= 65 && j >= 1; i--, j--)
+                    {
+                        if (i == Convert.ToInt32(pawn[0]) && j == (int)Char.GetNumericValue(pawn[1])) return true;
+                    }
+                }
+            }
+            return false;
+        }
+        #endregion
+
     }
 }
