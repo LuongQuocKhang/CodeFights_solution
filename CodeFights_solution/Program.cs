@@ -270,6 +270,24 @@ namespace CodeFights_solution
             #endregion
 
             #endregion
+
+            #region 11 - Rainbow of Clarity
+            #region IsDigit
+            //Console.WriteLine(IsDigit('0'));
+            #endregion
+
+            #region LineEncoding
+            //Console.WriteLine(LineEncoding("aabbbc"));
+            #endregion
+
+            #region ChessKnight
+            //Console.WriteLine(ChessKnight("a1"));
+            #endregion
+
+            #region DeleteDigit
+            Console.WriteLine(DeleteDigit(1001));
+            #endregion
+            #endregion
             Console.ReadLine();
         }
 
@@ -1255,6 +1273,107 @@ namespace CodeFights_solution
         }
         #endregion
 
+        #region 11 - Rainbow of Clarity
+        public static bool IsDigit(char symbol)
+        {
+            int temp = Convert.ToInt32(symbol);
+            if (temp >= 48 && temp <= 57) return true;
+            return false;
+        }
+        public static string LineEncoding(string s)
+        {
+            string result = "";
+            List<string> substring = new List<string>();
+            string stringtemp = s;
+            int dem = 0;
+            List<int> vitri = new List<int>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                // tránh việc i xét lại vị trí j đã đi qua 
+                //       01234
+                // vd :  aaabc
+                // xét i = 0 , j = {1,4} có vị trí 1 , 2 giống i = 0 (a) nên lưu lại vị trí 1 , 2 => i ko xét vị trí 1 , 2 nữa
+                if (!vitri.Contains(i))
+                {
+                    dem = 1;
+                    for (int j = i + 1; j < s.Length; j++)
+                    {
+                        if (s[i] == s[j] && !vitri.Contains(j))
+                        {
+                            vitri.Add(j);
+                            dem++;
+                        }
+                        else break;
+                    }       
+                    string temp = stringtemp.Substring(i, dem);
+                    substring.Add(temp);
+                    stringtemp = s;
+                    dem = 0;
+                }     
+            }
+            for (int i = 0; i < substring.Count; i++)
+            {
+                string a = substring[i];
+                if ( a.Length == 1)
+                {
+                    result += Convert.ToChar(a[0]);
+                }
+                else
+                {
+                    result += a.Length.ToString() + Convert.ToChar(a[0]);
+                }
+            }
+            return result;
+        }
+        public static int ChessKnight(string cell)
+        {
+            int count = 0;
+            cell.ToLower();
+            int first = Convert.ToInt32(cell[0]), second = (int)char.GetNumericValue(cell[1]);
+            if (Convert.ToInt32(cell[0]) < 49 || Convert.ToInt32(cell[1]) > 57) return 0;
+            // kiểm tra chiều dọc hướng lên
+            if ( second + 2 <= 8 )
+            {
+                if (cell[0] + 1 <= 'h') count++;
+                if (cell[0] - 1 >= 'a') count++;
+            }
+            // kiểm tra dọc hướng xuống
+            if ( second - 2 >= 1)
+            {
+                if (cell[0] + 1 <= 'h') count++;
+                if (cell[0] - 1 >= 'a') count++;
+            }
+            // chiều ->
+            if ( cell[0] + 2 <= 'h')
+            {
+                if ( second + 1 <= 8 ) count++;
+                if ( second - 1 >= 1 ) count++;
+            }
+            // chiếu <-
+            if (cell[0] - 2 >= 'a')
+            {
+                if (second + 1 <= 8) count++;
+                if (second - 1 >= 1) count++;
+            }
+            return count;
+        }
+        public static int DeleteDigit(int n)
+        {
+            List<int> result = new List<int>();
+            List<char> list = n.ToString().Select(s => s).ToList();
+            for (int i = 0; i < list.Count; i++)
+            {
+                List<char> temp = list;
+                temp.Remove(list[i]);
+                string s = string.Join("", temp.ToArray());
+                int num;
+                int.TryParse(s, out num);
+                result.Add(num);
+                list = n.ToString().Select(e => e).ToList();
+            }
+            return result.Max();
+        }
 
+        #endregion
     }
 }
