@@ -247,7 +247,29 @@ namespace CodeFights_solution
             #endregion
             #endregion
 
+            #region 10 - Eruption of Light
+            #region IsBeautifulString
+            //string inputString = "bbc";
+            //Console.WriteLine(IsBeautifulString(inputString));
+            #endregion
 
+            #region FindEmailDomain
+            //Console.WriteLine(FindEmailDomain("prettyandsimple@example.com"));
+            #endregion
+
+            #region BuildPalindrome
+            //Console.WriteLine(BuildPalindrome("abcdc"));
+            #endregion
+
+            #region ElectionsWinners
+            //Console.WriteLine(ElectionsWinners(new int[] { 3, 1, 1, 3, 1 },2));
+            #endregion
+
+            #region IsMAC48Address
+            //Console.WriteLine(IsMAC48Address("not a MAC-48 address"));
+            #endregion
+
+            #endregion
             Console.ReadLine();
         }
 
@@ -1125,6 +1147,114 @@ namespace CodeFights_solution
             return false;
         }
         #endregion
+
+        #region 10 - Eruption of Light
+        public static bool IsBeautifulString(string inputString)
+        {
+            List<char> listchar = new List<char>();
+            Dictionary<char, int> dictionary = new Dictionary<char, int>();
+            int dem = 0;
+            for (int i = 0; i < inputString.Length; i++)
+            {
+                if ( !listchar.Contains(inputString[i]) )
+                {
+                    listchar.Add(inputString[i]);
+                    for (int j = 0; j < inputString.Length; j++)
+                    {
+                        if (inputString[j].Equals(inputString[i]))
+                        {
+                            dem++;
+                        }
+                    }
+                    dictionary.Add(inputString[i], dem);
+                    dem = 0;
+                }         
+            }
+            for ( int  i = 97; i <= 122; i++)
+            {
+                if (!dictionary.ContainsKey(Convert.ToChar(i))) dictionary.Add(Convert.ToChar(i), 0);
+            }
+            List<char> temp = dictionary.Keys.ToList();
+            temp.Sort();
+            for (int i = 0; i < temp.Count; i++)
+            {
+                if ( i + 1 < temp.Count)
+                {
+                    if (dictionary[temp[i]] < dictionary[temp[i + 1]])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        public static string FindEmailDomain(string address)
+        {
+            return address.Substring(address.LastIndexOf('@') + 1, address.Length - address.LastIndexOf('@') - 1);
+        }
+        public static string BuildPalindrome(string st)
+        {
+            string result = (string)st.Clone();
+            if (CheckPalindrome(st)) return st;
+            for (int i = 0; i < st.Length; i++)
+            {
+                string temp = result;
+                for (int j = i; j >= 0 ; j--)
+                {
+                    temp += st[j];
+                }
+                if (CheckPalindrome(temp)) return temp;
+            }
+            return result;
+        }
+        public static bool CheckPalindrome(string st)
+        {
+            for (int i = 0; i < st.Length; i++)
+            {
+                if (st[i] != st[st.Length - 1 - i]) return false;
+            }
+            return true;
+        }
+        public static int ElectionsWinners(int[] votes, int k)
+        {
+            int Count = 0;
+            // sắp xếp mảng theo giá trị giảm dần
+            Array.Sort(votes);
+            Array.Reverse(votes);
+            int max = votes.Max(); // lưu lại giá trị , nếu gọi votes.Max() trong vòng lặp sẽ tốn thời gian tính lại max
+
+            if (k == 0 && votes[0] == votes[1]) return 0;
+            else if ( k == 0 )
+            {
+                return 1;
+            }
+            for (int i = 0; i < votes.Length; i++)
+            {
+                if (votes[i] + k > max) Count++;
+            }
+            return Count;
+        }
+        public static bool IsMAC48Address(string inputString)
+        {
+            inputString.ToUpper();
+            string[] array = inputString.Split('-');
+            int dem = 0;
+            if (array.Length != 6) return false;
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = 0; j < array[i].Length; j++)
+                {
+                    int temp = Convert.ToInt32(array[i][j]);
+                    if ( (temp >= 48 && temp <= 57 ) || (temp >= 65 && temp <= 70))
+                    {
+                        dem++;
+                    }
+                }
+            }
+            return dem == 12;
+        }
+        #endregion
+
 
     }
 }
