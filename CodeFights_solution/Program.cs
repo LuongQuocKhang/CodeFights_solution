@@ -362,14 +362,12 @@ namespace CodeFights_solution
             #endregion
             Console.ReadLine();
         }
+
         #region Arcade
 
         #region Intro
         #region 1 - The Journey Begins
-        public static int add(int param1, int param2)
-        {
-            return param1 + param2;
-        }
+        public static int add(int param1, int param2) => param1 + param2;
         int centuryFromYear(int year)
         {
             int century = year / 100;
