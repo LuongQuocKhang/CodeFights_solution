@@ -12,6 +12,9 @@ namespace CodeFights_solution
         static void Main(string[] args)
         {
             // test
+            #region Arcade
+
+            #region Intro
             #region 2 - Edge of the Ocean
             #region ArrayConsecutive
             //int[] statues = new int[] { 0,3 };
@@ -285,12 +288,83 @@ namespace CodeFights_solution
             #endregion
 
             #region DeleteDigit
-            Console.WriteLine(DeleteDigit(1001));
+            //Console.WriteLine(DeleteDigit(1001));
             #endregion
+            #endregion
+
+            #region 12 - final - Land of Logic
+            #region LongestWord
+            //Console.WriteLine(LongestWord("ABCd"));
+            #endregion
+
+            #region ValidTime
+            //Console.WriteLine(ValidTime("24:00"));
+            #endregion
+
+            #region SumUpNumbers
+            //Console.WriteLine(SumUpNumbers("123450"));
+            #endregion
+
+            #region DifferentSquares
+            //int[][] matrix = {  new int[] {9,9,9,9,9 },
+            //                    new int[] {9,9,9,9,9 },
+            //                    new int[] {9,9,9,9,9 },
+            //                    new int[] {9,9,9,9,9 },
+            //                    new int[] {9,9,9,9,9 },
+            //                    new int[] {9,9,9,9,9 }};
+            //Console.WriteLine(DifferentSquares(matrix));
+            #endregion
+
+            #region DigitsProduct
+            //Console.WriteLine(DigitsProduct(450));
+            #endregion
+
+            #region FileNaming
+            //string[] filename = { "doc", "doc", "image", "doc(1)", "doc" };
+            //string[] result = FileNaming(filename);
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    Console.WriteLine(result[i]);
+            //}
+            #endregion
+
+            #region MessageFromBinaryCode
+            //Console.WriteLine(MessageFromBinaryCode("010010000110010101101100011011000110111100100001"));
+            #endregion
+
+            #region SpiralNumbers
+            //int[][] result = SpiralNumbers(5);
+            //for (int i = 0; i < result.Length; i++)
+            //{
+            //    for (int j = 0; j < result.Length; j++)
+            //    {
+            //        Console.Write(result[i][j] + " ");
+            //    }
+            //    Console.WriteLine();
+            //}
+            #endregion
+
+            #region Sudoku
+            //int[][] grid = { new int[]{1,3,2,5,4,6,9,8,7},
+            //                 new int[]{4,6,5,8,7,9,3,2,1},
+            //                 new int[]{7,9,8,2,1,3,6,5,4},
+            //                 new int[]{9,2,1,4,3,5,8,7,6},
+            //                 new int[]{3,5,4,7,6,8,2,1,9},
+            //                 new int[]{6,8,7,1,9,2,5,4,3},
+            //                 new int[]{5,7,6,9,8,1,4,3,2},
+            //                 new int[]{2,4,3,6,5,7,1,9,8},
+            //                 new int[]{8,1,9,3,2,4,7,6,5}};
+            //Console.WriteLine(Sudoku(grid));
+            #endregion
+            #endregion
+            #endregion
+
             #endregion
             Console.ReadLine();
         }
+        #region Arcade
 
+        #region Intro
         #region 1 - The Journey Begins
         public static int add(int param1, int param2)
         {
@@ -572,7 +646,7 @@ namespace CodeFights_solution
             {
                 result[0] += a[i];
             }
-            for (int i = 1; i < a.Length; i+=2)
+            for (int i = 1; i < a.Length; i += 2)
             {
                 result[1] += a[i];
             }
@@ -603,7 +677,7 @@ namespace CodeFights_solution
             int[] temp = (int[])b.Clone();
             for (int i = 0; i < temp.Length; i++)
             {
-                if ( a[i] != temp[i])
+                if (a[i] != temp[i])
                 {
                     for (int j = i + 1; j < temp.Length; j++)
                     {
@@ -626,14 +700,14 @@ namespace CodeFights_solution
             if (dem == a.Length) return true;
             return false;
         }
-        public static bool check(int[] a , int[] b)
+        public static bool check(int[] a, int[] b)
         {
             for (int i = 0; i < a.Length; i++)
             {
                 if (a[i] != b[i])
                 {
                     return false;
-                }      
+                }
             }
             return true;
         }
@@ -661,7 +735,7 @@ namespace CodeFights_solution
             int count = 0, result = 0; // count là vị trí
             for (int i = 0; i < inputString.Length; i++)
             {
-                if ( b[i] == false)
+                if (b[i] == false)
                 {
                     a[count] = 1;
                     b[i] = true;
@@ -681,7 +755,7 @@ namespace CodeFights_solution
             */
             for (int i = 0; i < count; i++)
             {
-                if ( a[i] % 2 != 0)
+                if (a[i] % 2 != 0)
                 {
                     result++;
                 }
@@ -716,9 +790,9 @@ namespace CodeFights_solution
             {
                 if (inputArray[i] == max)
                 {
-                    if ( i + 1 < inputArray.Length)
+                    if (i + 1 < inputArray.Length)
                     {
-                        if (inputArray[i+1] < inputArray[i])
+                        if (inputArray[i + 1] < inputArray[i])
                         {
                             return inputArray[i] - inputArray[i + 1];
                         }
@@ -735,18 +809,18 @@ namespace CodeFights_solution
         {
             string[] temp = inputString.Split('.');
             int dem = 0;
-            if ( temp.Length == 4)
+            if (temp.Length == 4)
             {
                 for (int i = 0; i < temp.Length; i++)
                 {
-                    if ( temp[i] != "")
+                    if (temp[i] != "")
                     {
                         int result = 0;
-                        if ( Int32.TryParse(temp[i],out result) == true)
-                        if (result >= 0 && result <= 255)
-                        {
-                            dem++;
-                        }
+                        if (Int32.TryParse(temp[i], out result) == true)
+                            if (result >= 0 && result <= 255)
+                            {
+                                dem++;
+                            }
                     }
                 }
             }
@@ -758,7 +832,7 @@ namespace CodeFights_solution
             List<int> list = inputArray.ToList();
             for (int i = 1; i < inputArray.Max() + 1; i++)
             {
-                if ( list.All(element => element % i != 0) )
+                if (list.All(element => element % i != 0))
                 {
                     return i;
                 }
@@ -788,7 +862,7 @@ namespace CodeFights_solution
                 temp.Add(list);
             }
             // chuyển về mảng trong mảng kiểu int[][]
-            return result = temp.Select( list => list.ToArray()).ToArray();
+            return result = temp.Select(list => list.ToArray()).ToArray();
         }
         public static int[][] Minesweeper(bool[][] matrix)
         {
@@ -802,11 +876,11 @@ namespace CodeFights_solution
                     int dem = 0;
                     for (int x = i - 1; x < i + 2; x++)
                     {
-                        if ( x >= 0 )
+                        if (x >= 0)
                         {
                             for (int y = j - 1; y < j + 2; y++)
                             {
-                                if ( y >= 0)
+                                if (y >= 0)
                                 {
                                     if ((y < matrix[i].Length && x < matrix.Length))
                                     {
@@ -858,9 +932,9 @@ namespace CodeFights_solution
         public static bool EvenDigitsOnly(int n)
         {
             List<int> list = new List<int>();
-            while(n != 0)
+            while (n != 0)
             {
-                if ( n % 10 != 0)
+                if (n % 10 != 0)
                 {
                     list.Add(n % 10);
                 }
@@ -870,11 +944,11 @@ namespace CodeFights_solution
         }
         public static bool VariableName(string name)
         {
-            if (Convert.ToInt32(name[0]) >= 48 && Convert.ToInt32(name[0]) <= 57 ) return false;
+            if (Convert.ToInt32(name[0]) >= 48 && Convert.ToInt32(name[0]) <= 57) return false;
             if (name.All(c => Convert.ToInt32(c) >= 65 && Convert.ToInt32(c) <= 90 // chữ in
                            || Convert.ToInt32(c) >= 97 && Convert.ToInt32(c) <= 122 // chữ thường
-                           || Convert.ToInt32(c)>= 48 && Convert.ToInt32(c) <= 57 // số
-                           || c == '_' )) return true;
+                           || Convert.ToInt32(c) >= 48 && Convert.ToInt32(c) <= 57 // số
+                           || c == '_')) return true;
             return false;
         }
         public static string alphabeticShift(string inputString)
@@ -883,7 +957,7 @@ namespace CodeFights_solution
             for (int i = 0; i < inputString.Length; i++)
             {
                 int temp = Convert.ToInt32(inputString[i]) + 1;
-                if ( temp > 122)
+                if (temp > 122)
                 {
                     temp = 96 + (temp - 122);
                 }
@@ -901,13 +975,13 @@ namespace CodeFights_solution
         #region 7 - Through the Fog
         public static int CircleOfNumbers(int n, int firstNumber)
         {
-             return firstNumber + n / 2 > n - 1 ? firstNumber + n / 2 - n : firstNumber + n / 2;
+            return firstNumber + n / 2 > n - 1 ? firstNumber + n / 2 - n : firstNumber + n / 2;
         }
         public static int DepositProfit(double deposit, int rate, int threshold)
         {
             // đổi tham int deposit => double deposit
             int year = 0;
-            while ( deposit < threshold)
+            while (deposit < threshold)
             {
                 // vế sau trả về double , nếu lưu qua int thì sẽ bị mất giá trị sau dấu ,
                 deposit += rate * deposit / 100;
@@ -926,7 +1000,7 @@ namespace CodeFights_solution
                 {
                     temp += Math.Abs(a[j] - a[i]);
                 }
-                if ( dictionary.ContainsKey(temp) == false)
+                if (dictionary.ContainsKey(temp) == false)
                 {
                     dictionary.Add(temp, a[i]);
                 }
@@ -987,11 +1061,11 @@ namespace CodeFights_solution
 
         #region 8 - Diving Deeper
         public static int[] ExtractEachKth(int[] inputArray, int k)
-        {  
+        {
             List<int> list = inputArray.ToList();
             for (int i = 1; i <= 10; i++)
             {
-                if ( i * k - 1 < inputArray.Length)
+                if (i * k - 1 < inputArray.Length)
                 {
                     list.Remove(inputArray[i * k - 1]);
                 }
@@ -1003,7 +1077,7 @@ namespace CodeFights_solution
             int temp;
             for (int i = 0; i < inputString.Length; i++)
             {
-                if ( int.TryParse(inputString[i].ToString(),out temp) == true)
+                if (int.TryParse(inputString[i].ToString(), out temp) == true)
                 {
                     return inputString[i];
                 }
@@ -1015,7 +1089,7 @@ namespace CodeFights_solution
             List<char> list = new List<char>();
             for (int i = 0; i < s.Length; i++)
             {
-                if ( list.Contains(s[i]) == false)
+                if (list.Contains(s[i]) == false)
                 {
                     list.Add(s[i]);
                 }
@@ -1028,7 +1102,7 @@ namespace CodeFights_solution
             for (int i = 0; i < inputArray.Length; i++)
             {
                 int sum = 0;
-                if ( i + k <= inputArray.Length)
+                if (i + k <= inputArray.Length)
                 {
                     for (int j = i; j < i + k; j++)
                     {
@@ -1046,7 +1120,7 @@ namespace CodeFights_solution
         {
             int day = 1;
             int temp = upSpeed;
-            while ( temp < desiredHeight)
+            while (temp < desiredHeight)
             {
                 temp += upSpeed - downSpeed;
                 day++;
@@ -1056,9 +1130,9 @@ namespace CodeFights_solution
         public static int KnapsackLight(int value1, int weight1, int value2, int weight2, int maxW)
         {
             int value = 0;
-            if ( value1 > value2)
+            if (value1 > value2)
             {
-                if (maxW - weight1 >= 0 )
+                if (maxW - weight1 >= 0)
                 {
                     maxW -= weight1;
                     value += value1;
@@ -1088,12 +1162,12 @@ namespace CodeFights_solution
             string temp = inputString.ToLower();
             for (int i = 0; i < temp.Length; i++)
             {
-                if ( Convert.ToInt32(temp[i]) >= 48 && Convert.ToInt32(temp[i]) <= 57)
+                if (Convert.ToInt32(temp[i]) >= 48 && Convert.ToInt32(temp[i]) <= 57)
                 {
                     result += inputString[i];
                 }
                 else
-                {        
+                {
                     break;
                 }
             }
@@ -1128,16 +1202,16 @@ namespace CodeFights_solution
             bishop = bishop.ToUpper();
             pawn = pawn.ToUpper();
             if (bishop[0].Equals(pawn) == true || bishop[1].Equals(pawn[1]) == true) return false;
-            if ( Convert.ToInt32(pawn[0]) > Convert.ToInt32(bishop[0]))
+            if (Convert.ToInt32(pawn[0]) > Convert.ToInt32(bishop[0]))
             {
                 if ((int)Char.GetNumericValue(pawn[1]) > (int)Char.GetNumericValue(bishop[1]))
                 {
-                    for (int i = Convert.ToInt32(bishop[0]) , j = (int)Char.GetNumericValue(bishop[1]); i <= 72 && j <= 8 ; i++,j++)
+                    for (int i = Convert.ToInt32(bishop[0]), j = (int)Char.GetNumericValue(bishop[1]); i <= 72 && j <= 8; i++, j++)
                     {
                         if (i == Convert.ToInt32(pawn[0]) && j == (int)Char.GetNumericValue(pawn[1])) return true;
                     }
                 }
-                else if ((int)Char.GetNumericValue(pawn[1])< (int)Char.GetNumericValue(bishop[1]))
+                else if ((int)Char.GetNumericValue(pawn[1]) < (int)Char.GetNumericValue(bishop[1]))
                 {
                     for (int i = Convert.ToInt32(bishop[0]), j = (int)Char.GetNumericValue(bishop[1]); i <= 72 && j >= 1; i++, j--)
                     {
@@ -1147,14 +1221,14 @@ namespace CodeFights_solution
             }
             else if (Convert.ToInt32(pawn[0]) < Convert.ToInt32(bishop[0]))
             {
-                if ((int)Char.GetNumericValue(pawn[1])> (int)Char.GetNumericValue(bishop[1]))
+                if ((int)Char.GetNumericValue(pawn[1]) > (int)Char.GetNumericValue(bishop[1]))
                 {
                     for (int i = Convert.ToInt32(bishop[0]), j = (int)Char.GetNumericValue(bishop[1]); i >= 65 && j <= 8; i--, j++)
                     {
                         if (i == Convert.ToInt32(pawn[0]) && j == (int)Char.GetNumericValue(pawn[1])) return true;
                     }
                 }
-                else if ((int)Char.GetNumericValue(pawn[1])< (int)Char.GetNumericValue(bishop[1]))
+                else if ((int)Char.GetNumericValue(pawn[1]) < (int)Char.GetNumericValue(bishop[1]))
                 {
                     for (int i = Convert.ToInt32(bishop[0]), j = (int)Char.GetNumericValue(bishop[1]); i >= 65 && j >= 1; i--, j--)
                     {
@@ -1174,7 +1248,7 @@ namespace CodeFights_solution
             int dem = 0;
             for (int i = 0; i < inputString.Length; i++)
             {
-                if ( !listchar.Contains(inputString[i]) )
+                if (!listchar.Contains(inputString[i]))
                 {
                     listchar.Add(inputString[i]);
                     for (int j = 0; j < inputString.Length; j++)
@@ -1186,9 +1260,9 @@ namespace CodeFights_solution
                     }
                     dictionary.Add(inputString[i], dem);
                     dem = 0;
-                }         
+                }
             }
-            for ( int  i = 97; i <= 122; i++)
+            for (int i = 97; i <= 122; i++)
             {
                 if (!dictionary.ContainsKey(Convert.ToChar(i))) dictionary.Add(Convert.ToChar(i), 0);
             }
@@ -1196,7 +1270,7 @@ namespace CodeFights_solution
             temp.Sort();
             for (int i = 0; i < temp.Count; i++)
             {
-                if ( i + 1 < temp.Count)
+                if (i + 1 < temp.Count)
                 {
                     if (dictionary[temp[i]] < dictionary[temp[i + 1]])
                     {
@@ -1217,7 +1291,7 @@ namespace CodeFights_solution
             for (int i = 0; i < st.Length; i++)
             {
                 string temp = result;
-                for (int j = i; j >= 0 ; j--)
+                for (int j = i; j >= 0; j--)
                 {
                     temp += st[j];
                 }
@@ -1242,7 +1316,7 @@ namespace CodeFights_solution
             int max = votes.Max(); // lưu lại giá trị , nếu gọi votes.Max() trong vòng lặp sẽ tốn thời gian tính lại max
 
             if (k == 0 && votes[0] == votes[1]) return 0;
-            else if ( k == 0 )
+            else if (k == 0)
             {
                 return 1;
             }
@@ -1263,7 +1337,7 @@ namespace CodeFights_solution
                 for (int j = 0; j < array[i].Length; j++)
                 {
                     int temp = Convert.ToInt32(array[i][j]);
-                    if ( (temp >= 48 && temp <= 57 ) || (temp >= 65 && temp <= 70))
+                    if ((temp >= 48 && temp <= 57) || (temp >= 65 && temp <= 70))
                     {
                         dem++;
                     }
@@ -1304,17 +1378,17 @@ namespace CodeFights_solution
                             dem++;
                         }
                         else break;
-                    }       
+                    }
                     string temp = stringtemp.Substring(i, dem);
                     substring.Add(temp);
                     stringtemp = s;
                     dem = 0;
-                }     
+                }
             }
             for (int i = 0; i < substring.Count; i++)
             {
                 string a = substring[i];
-                if ( a.Length == 1)
+                if (a.Length == 1)
                 {
                     result += Convert.ToChar(a[0]);
                 }
@@ -1332,22 +1406,22 @@ namespace CodeFights_solution
             int first = Convert.ToInt32(cell[0]), second = (int)char.GetNumericValue(cell[1]);
             if (Convert.ToInt32(cell[0]) < 49 || Convert.ToInt32(cell[1]) > 57) return 0;
             // kiểm tra chiều dọc hướng lên
-            if ( second + 2 <= 8 )
+            if (second + 2 <= 8)
             {
                 if (cell[0] + 1 <= 'h') count++;
                 if (cell[0] - 1 >= 'a') count++;
             }
             // kiểm tra dọc hướng xuống
-            if ( second - 2 >= 1)
+            if (second - 2 >= 1)
             {
                 if (cell[0] + 1 <= 'h') count++;
                 if (cell[0] - 1 >= 'a') count++;
             }
             // chiều ->
-            if ( cell[0] + 2 <= 'h')
+            if (cell[0] + 2 <= 'h')
             {
-                if ( second + 1 <= 8 ) count++;
-                if ( second - 1 >= 1 ) count++;
+                if (second + 1 <= 8) count++;
+                if (second - 1 >= 1) count++;
             }
             // chiếu <-
             if (cell[0] - 2 >= 'a')
@@ -1373,6 +1447,275 @@ namespace CodeFights_solution
             }
             return result.Max();
         }
+        #endregion
+
+        #region 12 - final - Land of Logic
+        public static string LongestWord(string text)
+        {
+            List<string> words = new List<string>();
+            string word = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (IsLetter(text[i]))
+                {
+                    word += text[i];
+                }
+                else
+                {
+                    if (word.Length > 0) words.Add(word);
+                    word = "";
+                    while (i < text.Length - 1 && !IsLetter(text[i + 1])) i++; // kiểm tra các từ phía sau nếu ko phải là chữ thì bỏ qua
+                }
+            }
+            if (word.Length > 0) words.Add(word);
+            string longestword = words[0];
+            for (int i = 1; i < words.Count; i++)
+            {
+                if (words[i].Length > longestword.Length) longestword = words[i];
+            }
+            return longestword;
+        }
+        public static bool IsLetter(char value)
+        {
+            return (value >= 'a' && value <= 'z') || (value >= 'A' && value <= 'Z');
+        }
+        public static bool ValidTime(string time)
+        {
+            string[] Timearray = time.Split(':');
+            if (int.Parse(Timearray[0]) < 0 || int.Parse(Timearray[0]) > 23) return false;
+            if (int.Parse(Timearray[1]) < 0 || int.Parse(Timearray[1]) > 59) return false;
+            return true;
+        }
+        public static int SumUpNumbers(string inputString)
+        {
+            List<string> digits = new List<string>();
+            string digit = "";
+            for (int i = 0; i < inputString.Length; i++)
+            {
+                if (inputString[i] >= '0' && inputString[i] <= '9')
+                {
+                    digit += inputString[i];
+                }
+                else
+                {
+                    if (digit.Length > 0) digits.Add(digit);
+                    digit = "";
+                    while (i < inputString.Length && inputString[i] <= '0' && inputString[i] >= '9') i++;
+                }
+            }
+            if (digit.Length > 0) digits.Add(digit);
+            int sum = 0;
+            for (int i = 0; i < digits.Count; i++)
+            {
+                sum += Convert.ToInt32(digits[i]);
+            }
+            return sum;
+        }
+        public static int DifferentSquares(int[][] matrix)
+        {
+            List<List<List<int>>> list = new List<List<List<int>>>();
+            if (matrix.Length <= 1) return 0;
+            for (int i = 0; i < matrix.Length - 1; i++)
+            {
+                for (int j = 0; j < matrix[i].Length - 1; j++)
+                {
+                    List<List<int>> SquareMatrix = new List<List<int>>();
+                    for (int x = i; x < i + 2; x++)
+                    {
+                        List<int> temp = new List<int>();
+                        for (int y = j; y < j + 2; y++)
+                        {
+                            temp.Add(matrix[x][y]);
+                        }
+                        SquareMatrix.Add(temp);
+                    }
+                    int[][] squre = SquareMatrix.Select(e => e.ToArray()).ToArray();
+                    if (squre != null)
+                    {
+                        int d = 0;
+                        if (list.Count > 0)
+                        {
+                            for (int g = 0; g < list.Count; g++)
+                            {
+                                if (checkmatrix(list[g], SquareMatrix)) break;
+                                else d++;
+                            }
+                        }
+                        if (d == list.Count)
+                            list.Add(SquareMatrix);
+                    }
+                }
+            }
+
+
+            return list.Count;
+        }
+        public static bool checkmatrix(List<List<int>> matrix1, List<List<int>> matrix2)
+        {
+            for (int i = 0; i < matrix1.Count; i++)
+            {
+                for (int j = 0; j < matrix1[i].Count; j++)
+                {
+                    if (matrix1[i][j] != matrix2[i][j]) return false;
+                }
+            }
+            return true;
+        }
+        public static int DigitsProduct(int product)
+        {
+            if (product == 1) return 1;
+            if (product == 0) return 10;
+            // kiểm cha chia hết từ 9 -> 2
+            List<int> list = new List<int>();
+            for (int i = 9; i >= 2; i--)
+            {
+                while (product % i == 0)
+                {
+                    product /= i;
+                    list.Add(i);
+                }
+            }
+            if (product > 1) return -1;
+            int result = 0;
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                result = result * 10 + list[i];
+            }
+            return result;
+        }
+        public static string[] FileNaming(string[] names)
+        {
+            List<string> list = new List<string>();
+            foreach (var item in names)
+            {
+                if (!list.Contains(item)) list.Add(item);
+                else
+                {
+                    for (int i = 1; i < 16; i++)
+                    {
+                        if (list.Contains(item + "(" + i + ")")) continue; // nếu chứa rồi thì tăng i lên
+                        list.Add(item + "(" + i + ")");
+                        break;
+                    }
+                }
+            }
+            return list.ToArray();
+        }
+        public static string MessageFromBinaryCode(string code)
+        {
+            List<string> binary = new List<string>();
+            string result = "";
+            if (code.Length % 8 == 0)
+            {
+                while (code != "")
+                {
+                    string temp = code.Substring(0, 8);
+                    code = code.Substring(8);
+                    binary.Add(temp);
+                }
+            }
+            for (int i = 0; i < binary.Count; i++)
+            {
+                int letter = Convert.ToInt32(binary[i], 2);
+                result += Convert.ToChar(letter);
+            }
+            return result;
+        }
+        public static int[][] SpiralNumbers(int n)
+        {
+            int[][] result = new int[n][];
+            for (int i = 0; i < n; i++)
+            {
+                result[i] = new int[n];
+            }
+            int l1 = 0,
+                l2 = 0,
+                l3 = n - 1,
+                l4 = n - 1;
+            int c = 1;
+            int Square = n * n;
+
+            while (true)
+            {
+                // left to right
+                for (int i = l1; i <= l3; i++)
+                {
+                    result[l2][i] = c++;
+                }
+                l2++;
+                // top to bottom
+                for (int i = l2; i <= l4; i++)
+                {
+                    result[i][l3] = c++;
+                }
+                l3--;
+                // right to left
+                for (int i = l3; i >= l1; i--)
+                {
+                    result[l4][i] = c++;
+                }
+                l4--;
+                // bottom to top
+                for (int i = l4; i >= l2; i--)
+                {
+                    result[i][l1] = c++;
+                }
+                l1++;
+                if (c > Square) break;
+            }
+            return result;
+        }
+        public static bool Sudoku(int[][] grid)
+        {
+            for (int i = 0; i < grid.Length; i++)
+            {
+                for (int j = 0; j < grid[i].Length; j++)
+                {
+                    for (int col = j + 1; col < grid[i].Length; col++)
+                    {
+                        if (grid[i][j] == grid[i][col])
+                            return false;
+                    }
+                    for (int row = i + 1; row < grid.Length; row++)
+                    {
+                        if (grid[i][j] == grid[row][j])
+                            return false;
+                    }
+                }
+            }
+            for (int i = 0; i < grid.Length - 2; i = i + 3)
+            {
+                for (int j = 0; j < grid[i].Length - 2; j = j + 3)
+                {
+                    List<List<int>> Squaregrid = new List<List<int>>();
+                    for (int x = i; x < i + 3; x++)
+                    {
+                        List<int> temp = new List<int>();
+                        for (int y = j; y < j + 3; y++)
+                        {
+                            temp.Add(grid[x][y]);
+                        }
+                        Squaregrid.Add(temp);
+                    }
+                    int[][] squre = Squaregrid.Select(e => e.ToArray()).ToArray();
+                    int sum = 0;
+                    for (int g = 0; g < squre.Length; g++)
+                    {
+                        for (int h = 0; h < squre.Length; h++)
+                        {
+                            sum += squre[g][h];
+                        }
+                    }
+                    if (sum != 45)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        #endregion
+        #endregion
 
         #endregion
     }
